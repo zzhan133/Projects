@@ -16,12 +16,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	cv::imshow("image", img); 
 	cv::waitKey();
 */
-	IplImage* img = cvLoadImage("baboon.jpg");
-	cvNamedWindow("Example1", CV_WINDOW_AUTOSIZE);
-	cvShowImage("Example1",img);
-	cvWaitKey(0);
-	cvReleaseImage(&img);
-	cvDestroyWindow("Example1");
+//	IplImage* img = cvLoadImage("baboon.jpg");
+	cvNamedWindow("Example2", CV_WINDOW_AUTOSIZE);
+	CvCapture* capture = cvCreateFileCapture("test.avi");
+	IplImage* frame;
+	while(1){
+		frame = cvQueryFrame(capture);
+		if(!frame) break;
+		cvShowImage("Example2", frame);
+		char c = cvWaitKey(33);
+		if(c==27) break;
+	}
+	cvReleaseCapture(&capture);
+	cvDestroyWindow("Example2");
 	return 0;
 }
 
