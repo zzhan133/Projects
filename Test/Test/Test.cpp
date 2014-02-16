@@ -6,7 +6,7 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	const char* imagename = "E:/baboon.jpg"; //the input image location 
+/*	const char* imagename = "baboon.jpg"; //the input image location 
 	cv::Mat img = cv::imread(imagename); 
 	if(img.empty()) 
 		return -1; 
@@ -15,6 +15,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	cv::namedWindow("image", CV_WINDOW_AUTOSIZE); 
 	cv::imshow("image", img); 
 	cv::waitKey();
+*/
+	IplImage* img = cvLoadImage("baboon.jpg");
+	cvNamedWindow("Example1", CV_WINDOW_AUTOSIZE);
+	cvShowImage("Example1",img);
+	cvWaitKey(0);
+	cvReleaseImage(&img);
+	cvDestroyWindow("Example1");
 	return 0;
 }
 
